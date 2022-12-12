@@ -1,24 +1,18 @@
 import * as THREE from 'three'
-
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
 import Weapon from './Weapon'
 
 export default class Scene extends THREE.Scene {
-  private readonly mtlLoader = new MTLLoader()
-  private readonly objLoader = new OBJLoader()
-  private readonly weapon: Weapon
   private readonly camera: THREE.PerspectiveCamera
-
-  private readonly keyDown = new Set<string>()
-
-  private directionVector = new THREE.Vector3()
+  private readonly weapon: Weapon
+  private readonly keyDown: Set<string>
+  private readonly directionVector: THREE.Vector3
 
   constructor(camera: THREE.PerspectiveCamera) {
     super()
-
     this.camera = camera
-    this.weapon = new Weapon(this.mtlLoader, this.objLoader)
+    this.weapon = new Weapon()
+    this.keyDown = new Set<string>()
+    this.directionVector = new THREE.Vector3()
   }
 
   async initialize() {
@@ -54,6 +48,7 @@ export default class Scene extends THREE.Scene {
     this.camera.getWorldDirection(dir)
 
     const speed = 0.1
+    console.log(this.keyDown)
 
     if (this.keyDown.has('a')) {
       this.camera.rotateY(0.02)
