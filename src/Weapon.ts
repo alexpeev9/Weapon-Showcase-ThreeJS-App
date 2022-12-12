@@ -6,10 +6,10 @@ export default class Weapon extends THREE.Scene {
   private readonly mtlLoader: MTLLoader
   private readonly objLoader: OBJLoader
 
-  constructor(mtlLoader: MTLLoader, objLoader: OBJLoader) {
+  constructor() {
     super()
-    this.mtlLoader = mtlLoader
-    this.objLoader = objLoader
+    this.mtlLoader = new MTLLoader()
+    this.objLoader = new OBJLoader()
   }
 
   async list() {
@@ -26,11 +26,9 @@ export default class Weapon extends THREE.Scene {
   ) {
     const objMTL = await this.mtlLoader.loadAsync(mtlRoot)
     objMTL.preload()
-
     this.objLoader.setMaterials(objMTL)
 
     const modelRoot = await this.objLoader.loadAsync(objRoot)
-
     modelRoot.rotateY(Math.PI * 0.5)
     modelRoot.position.x = xCoord
     modelRoot.position.z = zCoord
