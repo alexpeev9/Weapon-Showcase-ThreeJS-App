@@ -2,7 +2,11 @@
   "name": "doom-three-js-project",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
