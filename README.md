@@ -21,5 +21,3 @@ cd ./example
 npm install
 npm start
 ```
-
-<h4>📕 Information</h4>
